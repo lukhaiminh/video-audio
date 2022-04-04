@@ -16,16 +16,6 @@ function trimVideo(filePath, startingTime, duration) {
       .output(OUTPUT_PATH)
       .on('end', () => {
         console.log('Done');
-        // add sticker
-        // ffmpeg.ffprobe(filePath, (err, _metaData) => {
-        //   if (err) {
-        //     throw new Error('sticker err');
-        //   }
-        // }).on('end', () => {
-        //   ffmpeg.ffprobe(filePath, (err, _metaData) => {
-
-        //   });
-        // });
       })
       .on('error', (err) => console.log(err))
       .run();
