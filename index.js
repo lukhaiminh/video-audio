@@ -1,5 +1,5 @@
 const ffmpeg = require('ffmpeg');
-const ffmpeg = require('fluent-ffmpeg');
+// const ffmpeg = require('fluent-ffmpeg');
 
 // const INPUT = './public/input/video-less-100MB.mp4';
 const OUTPUT_PATH = './public/output/out.mp4';
