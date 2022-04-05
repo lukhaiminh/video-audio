@@ -1,19 +1,21 @@
 const ffmpeg = require('ffmpeg');
 
-const OUTPUT_PATH = './public/output/out.mp4';
+const OUTPUT_FOLDER_PATH = './public/output/';
 
-function trimVideo(filePath) {
-  try {
-    const process = new ffmpeg(filePath);
-    process
-      .then((video) =>
-        video.setVideoStartTime(10).setVideoDuration(15).save(OUTPUT_PATH)
-      )
-      .then((file) => console.log('file: ', file));
-  } catch (e) {
-    console.log(e.code);
-    console.log(e.msg);
-  }
+function trimVideo(filePath, startTime, duration) {
+  const extensions = filePath.split('.');
+  const ext = extensions[extensions.length - 1];
+  const process = new ffmpeg(filePath);
+  process
+    .then((video) =>
+      video
+        .setVideoStartTime(startTime)
+        .setVideoDuration(duration)
+        // .save(OUTPUT_FOLDER_PATH + 'out-video.' + ext)
+        .save(`${OUTPUT_FOLDER_PATH}${Date.now()}.${ext}`)
+    )
+    .then((file) => console.log('file: ', file))
+    .catch((err) => console.log(err));
 }
 
 const INPUT = './public/input/video-less-100MB.mp4';
