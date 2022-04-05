@@ -1,6 +1,6 @@
 const ffmpeg = require('ffmpeg');
 
-let OUTPUT_FOLDER_PATH = './public/output/';
+const OUTPUT_FOLDER_PATH = './public/output/';
 
 function trimVideo(filePath, startTime, duration) {
   const extensions = filePath.split('.');
