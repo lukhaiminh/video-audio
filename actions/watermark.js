@@ -1,21 +1,33 @@
+const ffmpeg = require('ffmpeg');
 
-const ffmpeg=require('ffmpeg');
+const OUTPUT_FOLDER_PATH = './public/output/';
 
-function waterMark()
-{
-        let process = new ffmpeg('video/video1.mp4');
-        process.then( (video)=> {
-            console.log('The video is ready to be processed');
-            let watermarkPath = 'video/watermark.png',
-            newFilepath = 'video/video2_new.mp4',
-            settings = {
-                position          : "SW"      // Position: NE NC NW SE SC SW C CE CW
-                , margin_nord     : null      // Margin nord
-                , margin_sud      : null      // Margin sud
-                , margin_east     : null      // Margin east
-                , margin_west     : null      // Margin west
-            };
-            video
-            .fnAddWatermark(watermarkPath, newFilepath, settings)}).then(()=>{console.log('Done')}).catch(error=>console.log('Error:'+error))
+function waterMark(inputFile, inputImage) {
+  const extensions = inputFile.split('.');
+  const ext = extensions[extensions.length - 1];
+  const outFilePath = `${OUTPUT_FOLDER_PATH}watermark-${Date.now()}.${ext}`;
+
+  new ffmpeg(inputFile)
+    .then((video) => {
+      console.log('The video is ready to be processed');
+
+      // TODO: TEST SETTINGS & DESCRIBE settings
+      const settings = {
+        position: 'CW', // Position: NE NC NW SE SC SW C CE CW
+        margin_nord: 10, // Margin nord
+        margin_sud: 0, // Margin sud  // top
+        margin_east: 5, // Margin east
+        margin_west: 6 // Margin west
+      };
+      video.fnAddWatermark(inputImage, outFilePath, settings);
+    })
+    .then(() => {
+      console.log('Done');
+    })
+    .catch((error) => console.log('Error:' + error));
 }
-waterMark()
+
+waterMark(
+  './public/input/video-less-100MB.mp4',
+  './public/input/wartermark-img.png'
+);
