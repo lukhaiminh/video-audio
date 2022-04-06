@@ -16,8 +16,10 @@ const tmp = () => {
     })
   })
 }
-
+function merge(){
 tmp().then(res=>console.log(res)).catch(err=>console.log(err))
-  
+}
+merge()
+
 
 
