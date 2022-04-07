@@ -1,4 +1,3 @@
-const errors = require('bluebird/js/release/errors');
 const ffmpeg = require('fluent-ffmpeg');
 filePath1 = './public/input/video1.mp4';
 filePath2 = './public/input/video2.mp4';
