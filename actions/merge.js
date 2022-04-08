@@ -1,6 +1,6 @@
 const ffmpeg = require('fluent-ffmpeg');
-filePath1 = './public/input/video1.mp4';
-filePath2 = './public/input/video2.mp4';
+const filePath1 = './public/input/video1.mp4';
+const filePath2 = './public/input/video2.mp4';
 //you can input file nth
 const fileOut = `./public/output/`;
 const mergePromise = (...arguements) => {
